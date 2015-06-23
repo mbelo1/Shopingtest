@@ -1,0 +1,6 @@
+E:\shoppingtest\Beheer\Beheer\bin\Beheer.dll.config
+E:\shoppingtest\Beheer\Beheer\bin\Beheer.dll
+E:\shoppingtest\Beheer\Beheer\bin\Beheer.pdb
+E:\shoppingtest\Beheer\Beheer\obj\Debug\Beheer.csprojResolveAssemblyReference.cache
+E:\shoppingtest\Beheer\Beheer\obj\Debug\Beheer.dll
+E:\shoppingtest\Beheer\Beheer\obj\Debug\Beheer.pdb

@@ -1,0 +1,10 @@
+E:\shoppingtest\Beheer\DataLayer\bin\Debug\DataLayer.dll
+E:\shoppingtest\Beheer\DataLayer\bin\Debug\DataLayer.pdb
+E:\shoppingtest\Beheer\DataLayer\obj\Debug\DataLayer.dll
+E:\shoppingtest\Beheer\DataLayer\obj\Debug\DataLayer.pdb
+E:\shoppingtest\Beheer\DataLayer\bin\Debug\DataLayer.dll.config
+E:\shoppingtest\Beheer\DataLayer\bin\Debug\EntityFramework.dll
+E:\shoppingtest\Beheer\DataLayer\bin\Debug\EntityFramework.SqlServer.dll
+E:\shoppingtest\Beheer\DataLayer\bin\Debug\EntityFramework.xml
+E:\shoppingtest\Beheer\DataLayer\bin\Debug\EntityFramework.SqlServer.xml
+E:\shoppingtest\Beheer\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache

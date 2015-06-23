@@ -1,0 +1,10 @@
+E:\shoppingtest\Beheer\Website\bin\Beheer.dll.config
+E:\shoppingtest\Beheer\Website\bin\Beheer.dll
+E:\shoppingtest\Beheer\Website\bin\Beheer.pdb
+E:\shoppingtest\Beheer\Website\obj\Debug\OAS.csprojResolveAssemblyReference.cache
+E:\shoppingtest\Beheer\Website\obj\Debug\Beheer.dll
+E:\shoppingtest\Beheer\Website\obj\Debug\Beheer.pdb
+E:\shoppingtest\Beheer\Website\bin\DataLayer.dll
+E:\shoppingtest\Beheer\Website\bin\EntityFramework.dll
+E:\shoppingtest\Beheer\Website\bin\DataLayer.pdb
+E:\shoppingtest\Beheer\Website\bin\EntityFramework.xml

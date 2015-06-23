@@ -1,0 +1,765 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DbsC.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Beheerder">
+          <Key>
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="Email" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Voornaam" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Tussenvoegsels" Type="varchar" MaxLength="60" />
+          <Property Name="Achternaam" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Wachtwoord" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Docent">
+          <Key>
+            <PropertyRef Name="Afkorting" />
+          </Key>
+          <Property Name="Afkorting" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Voornaam" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Tussenvoegsels" Type="varchar" MaxLength="60" />
+          <Property Name="Achternaam" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Telefoon1" Type="varchar" MaxLength="20" />
+          <Property Name="Telefoon2" Type="varchar" MaxLength="20" />
+          <Property Name="Klas" Type="varchar" MaxLength="10" />
+          <Property Name="Wachtwoord" Type="varchar(max)" />
+          <Property Name="Isactief" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Gesprek">
+          <Key>
+            <PropertyRef Name="GesprekID" />
+          </Key>
+          <Property Name="GesprekID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OuderID" Type="int" Nullable="false" />
+          <Property Name="SubMomentID" Type="int" Nullable="false" />
+          <Property Name="ThuisSituatie" Type="bit" />
+          <Property Name="StudieKeuze" Type="bit" />
+          <Property Name="Voortgang" Type="bit" />
+          <Property Name="Presentatie" Type="bit" />
+          <Property Name="Motivatie" Type="bit" />
+          <Property Name="AlgemeenWelbevinden" Type="bit" />
+          <Property Name="VerwachtingsPatroon" Type="bit" />
+          <Property Name="DocentOpmerking" Type="varchar(max)" />
+          <Property Name="StudentOpermerking" Type="varchar(max)" />
+          <Property Name="AfsprakenDoorverijzing" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Klas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="KlasNaam" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="DocentAfkorting" Type="varchar" MaxLength="10" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AangemaaktOp" Type="date" />
+        </EntityType>
+        <EntityType Name="Moment">
+          <Key>
+            <PropertyRef Name="MomentID" />
+          </Key>
+          <Property Name="MomentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DocentAfkorting" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Datum" Type="date" Nullable="false" />
+          <Property Name="BeginTijd" Type="time" Precision="0" Nullable="false" />
+          <Property Name="EindTijd" Type="time" Precision="0" Nullable="false" />
+          <Property Name="Gespreksduur" Type="time" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ouder">
+          <Key>
+            <PropertyRef Name="OuderID" />
+          </Key>
+          <Property Name="OuderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Voornaam" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Tussenvoegsels" Type="varchar" MaxLength="60" />
+          <Property Name="Achternaam" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Telefoon1" Type="varchar" MaxLength="20" />
+          <Property Name="Telefoon2" Type="varchar" MaxLength="20" />
+          <Property Name="Adres" Type="varchar" MaxLength="60" />
+          <Property Name="Postcode" Type="varchar" MaxLength="6" />
+          <Property Name="Woonplaats" Type="varchar" MaxLength="60" />
+          <Property Name="Wachtwoord" Type="varchar" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Periode">
+          <Key>
+            <PropertyRef Name="PeriodId" />
+          </Key>
+          <Property Name="PeriodId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StartDatum" Type="date" Nullable="false" />
+          <Property Name="EindDatum" Type="date" Nullable="false" />
+          <Property Name="IsActief" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="Studentnummer" />
+          </Key>
+          <Property Name="Studentnummer" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="KlasId" Type="int" />
+          <Property Name="Roepnaam" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="Tussenvoegsels" Type="varchar" MaxLength="60" />
+          <Property Name="Achternaam" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Adres" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Postcode" Type="varchar" MaxLength="7" Nullable="false" />
+          <Property Name="Woonplaats" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="GeboorteDatum" Type="date" Nullable="false" />
+          <Property Name="Geslacht" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="Telefoon1" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="Telefoon2" Type="nchar" MaxLength="20" />
+          <Property Name="Opleiding" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Email" Type="nchar" MaxLength="255" Nullable="false" />
+          <Property Name="OuderID" Type="int" Nullable="false" />
+          <Property Name="Actief" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubMoment">
+          <Key>
+            <PropertyRef Name="SubMomentID" />
+          </Key>
+          <Property Name="SubMomentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MomentID" Type="int" Nullable="false" />
+          <Property Name="OuderID" Type="int" />
+          <Property Name="BeginTijd" Type="time" Precision="0" Nullable="false" />
+          <Property Name="EindTijd" Type="time" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_Gesprek_SubMoment">
+          <End Role="SubMoment" Type="Self.SubMoment" Multiplicity="1" />
+          <End Role="Gesprek" Type="Self.Gesprek" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubMoment">
+              <PropertyRef Name="SubMomentID" />
+            </Principal>
+            <Dependent Role="Gesprek">
+              <PropertyRef Name="SubMomentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Klas_Docent">
+          <End Role="Docent" Type="Self.Docent" Multiplicity="0..1" />
+          <End Role="Klas" Type="Self.Klas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Docent">
+              <PropertyRef Name="Afkorting" />
+            </Principal>
+            <Dependent Role="Klas">
+              <PropertyRef Name="DocentAfkorting" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Moment_Docent">
+          <End Role="Docent" Type="Self.Docent" Multiplicity="1" />
+          <End Role="Moment" Type="Self.Moment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Docent">
+              <PropertyRef Name="Afkorting" />
+            </Principal>
+            <Dependent Role="Moment">
+              <PropertyRef Name="DocentAfkorting" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_Klas">
+          <End Role="Klas" Type="Self.Klas" Multiplicity="0..1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="KlasId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_Ouder">
+          <End Role="Ouder" Type="Self.Ouder" Multiplicity="1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ouder">
+              <PropertyRef Name="OuderID" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="OuderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubMoment_Moment">
+          <End Role="Moment" Type="Self.Moment" Multiplicity="1" />
+          <End Role="SubMoment" Type="Self.SubMoment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Moment">
+              <PropertyRef Name="MomentID" />
+            </Principal>
+            <Dependent Role="SubMoment">
+              <PropertyRef Name="MomentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spLastKlas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="DbsCStoreContainer">
+          <EntitySet Name="Beheerder" EntityType="Self.Beheerder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Docent" EntityType="Self.Docent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gesprek" EntityType="Self.Gesprek" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Klas" EntityType="Self.Klas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Moment" EntityType="Self.Moment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ouder" EntityType="Self.Ouder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Periode" EntityType="Self.Periode" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubMoment" EntityType="Self.SubMoment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Gesprek_SubMoment" Association="Self.FK_Gesprek_SubMoment">
+            <End Role="SubMoment" EntitySet="SubMoment" />
+            <End Role="Gesprek" EntitySet="Gesprek" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Klas_Docent" Association="Self.FK_Klas_Docent">
+            <End Role="Docent" EntitySet="Docent" />
+            <End Role="Klas" EntitySet="Klas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Moment_Docent" Association="Self.FK_Moment_Docent">
+            <End Role="Docent" EntitySet="Docent" />
+            <End Role="Moment" EntitySet="Moment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Klas" Association="Self.FK_Student_Klas">
+            <End Role="Klas" EntitySet="Klas" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Ouder" Association="Self.FK_Student_Ouder">
+            <End Role="Ouder" EntitySet="Ouder" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubMoment_Moment" Association="Self.FK_SubMoment_Moment">
+            <End Role="Moment" EntitySet="Moment" />
+            <End Role="SubMoment" EntitySet="SubMoment" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DbsC" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Beheerder">
+          <Key>
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Voornaam" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Tussenvoegsels" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Achternaam" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Wachtwoord" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Docent">
+          <Key>
+            <PropertyRef Name="Afkorting" />
+          </Key>
+          <Property Name="Afkorting" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Voornaam" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Tussenvoegsels" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Achternaam" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefoon1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Telefoon2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Klas" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Wachtwoord" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Isactief" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Moment" Relationship="Self.FK_Moment_Docent" FromRole="Docent" ToRole="Moment" />
+          <NavigationProperty Name="Klas1" Relationship="DbsC.FK_Klas_Docent" FromRole="Docent" ToRole="Klas" />
+        </EntityType>
+        <EntityType Name="Gesprek">
+          <Key>
+            <PropertyRef Name="GesprekID" />
+          </Key>
+          <Property Name="GesprekID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OuderID" Type="Int32" Nullable="false" />
+          <Property Name="SubMomentID" Type="Int32" Nullable="false" />
+          <Property Name="ThuisSituatie" Type="Boolean" />
+          <Property Name="StudieKeuze" Type="Boolean" />
+          <Property Name="Voortgang" Type="Boolean" />
+          <Property Name="Presentatie" Type="Boolean" />
+          <Property Name="Motivatie" Type="Boolean" />
+          <Property Name="AlgemeenWelbevinden" Type="Boolean" />
+          <Property Name="VerwachtingsPatroon" Type="Boolean" />
+          <Property Name="DocentOpmerking" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="StudentOpermerking" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="AfsprakenDoorverijzing" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SubMoment" Relationship="Self.FK_Gesprek_SubMoment" FromRole="Gesprek" ToRole="SubMoment" />
+        </EntityType>
+        <EntityType Name="Moment">
+          <Key>
+            <PropertyRef Name="MomentID" />
+          </Key>
+          <Property Name="MomentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DocentAfkorting" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Datum" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="BeginTijd" Type="Time" Nullable="false" Precision="0" />
+          <Property Name="EindTijd" Type="Time" Nullable="false" Precision="0" />
+          <Property Name="Gespreksduur" Type="Time" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Docent" Relationship="Self.FK_Moment_Docent" FromRole="Moment" ToRole="Docent" />
+          <NavigationProperty Name="SubMoment" Relationship="Self.FK_SubMoment_Moment" FromRole="Moment" ToRole="SubMoment" />
+        </EntityType>
+        <EntityType Name="Periode">
+          <Key>
+            <PropertyRef Name="PeriodId" />
+          </Key>
+          <Property Name="PeriodId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StartDatum" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EindDatum" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IsActief" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubMoment">
+          <Key>
+            <PropertyRef Name="SubMomentID" />
+          </Key>
+          <Property Name="SubMomentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MomentID" Type="Int32" Nullable="false" />
+          <Property Name="OuderID" Type="Int32" />
+          <Property Name="BeginTijd" Type="Time" Nullable="false" Precision="0" />
+          <Property Name="EindTijd" Type="Time" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Gesprek" Relationship="Self.FK_Gesprek_SubMoment" FromRole="SubMoment" ToRole="Gesprek" />
+          <NavigationProperty Name="Moment" Relationship="Self.FK_SubMoment_Moment" FromRole="SubMoment" ToRole="Moment" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Moment_Docent">
+          <End Role="Docent" Type="Self.Docent" Multiplicity="1" />
+          <End Role="Moment" Type="Self.Moment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Docent">
+              <PropertyRef Name="Afkorting" />
+            </Principal>
+            <Dependent Role="Moment">
+              <PropertyRef Name="DocentAfkorting" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gesprek_SubMoment">
+          <End Role="SubMoment" Type="Self.SubMoment" Multiplicity="1" />
+          <End Role="Gesprek" Type="Self.Gesprek" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubMoment">
+              <PropertyRef Name="SubMomentID" />
+            </Principal>
+            <Dependent Role="Gesprek">
+              <PropertyRef Name="SubMomentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubMoment_Moment">
+          <End Role="Moment" Type="Self.Moment" Multiplicity="1" />
+          <End Role="SubMoment" Type="Self.SubMoment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Moment">
+              <PropertyRef Name="MomentID" />
+            </Principal>
+            <Dependent Role="SubMoment">
+              <PropertyRef Name="MomentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DbsContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Beheerder" EntityType="Self.Beheerder" />
+          <EntitySet Name="Docent" EntityType="Self.Docent" />
+          <EntitySet Name="Gesprek" EntityType="Self.Gesprek" />
+          <EntitySet Name="Moment" EntityType="Self.Moment" />
+          <EntitySet Name="Periode" EntityType="Self.Periode" />
+          <EntitySet Name="SubMoment" EntityType="Self.SubMoment" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK_Moment_Docent" Association="Self.FK_Moment_Docent">
+            <End Role="Docent" EntitySet="Docent" />
+            <End Role="Moment" EntitySet="Moment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gesprek_SubMoment" Association="Self.FK_Gesprek_SubMoment">
+            <End Role="SubMoment" EntitySet="SubMoment" />
+            <End Role="Gesprek" EntitySet="Gesprek" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubMoment_Moment" Association="Self.FK_SubMoment_Moment">
+            <End Role="Moment" EntitySet="Moment" />
+            <End Role="SubMoment" EntitySet="SubMoment" />
+          </AssociationSet>
+          <EntitySet Name="Klas" EntityType="DbsC.Klas" />
+          <AssociationSet Name="FK_Klas_Docent" Association="DbsC.FK_Klas_Docent">
+            <End Role="Docent" EntitySet="Docent" />
+            <End Role="Klas" EntitySet="Klas" />
+          </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(DbsC.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(DbsC.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="spLastKlas" ReturnType="Collection(Decimal)" />
+          <EntitySet Name="Ouder" EntityType="DbsC.Ouder" />
+          <EntitySet Name="Student" EntityType="DbsC.Student" />
+          <AssociationSet Name="FK_Student_Klas" Association="DbsC.FK_Student_Klas">
+            <End Role="Klas" EntitySet="Klas" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Ouder" Association="DbsC.FK_Student_Ouder">
+            <End Role="Ouder" EntitySet="Ouder" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Klas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="KlasNaam" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DocentAfkorting" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AangemaaktOp" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Docent" Relationship="DbsC.FK_Klas_Docent" FromRole="Klas" ToRole="Docent" />
+          <NavigationProperty Name="Student" Relationship="DbsC.FK_Student_Klas" FromRole="Klas" ToRole="Student" />
+        </EntityType>
+        <Association Name="FK_Klas_Docent">
+          <End Type="DbsC.Docent" Role="Docent" Multiplicity="0..1" />
+          <End Type="DbsC.Klas" Role="Klas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Docent">
+              <PropertyRef Name="Afkorting" />
+            </Principal>
+            <Dependent Role="Klas">
+              <PropertyRef Name="DocentAfkorting" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="Ouder">
+          <Key>
+            <PropertyRef Name="OuderID" />
+          </Key>
+          <Property Name="OuderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Voornaam" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Tussenvoegsels" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Achternaam" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Telefoon1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Telefoon2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Adres" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Postcode" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="Woonplaats" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Wachtwoord" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Student" Relationship="DbsC.FK_Student_Ouder" FromRole="Ouder" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="Studentnummer" />
+          </Key>
+          <Property Name="Studentnummer" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="KlasId" Type="Int32" />
+          <Property Name="Roepnaam" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Tussenvoegsels" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Achternaam" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Adres" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Postcode" Type="String" Nullable="false" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="Woonplaats" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="GeboorteDatum" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Geslacht" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="Telefoon1" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Telefoon2" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Opleiding" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="255" FixedLength="true" Unicode="true" />
+          <Property Name="OuderID" Type="Int32" Nullable="false" />
+          <Property Name="Actief" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Klas" Relationship="DbsC.FK_Student_Klas" FromRole="Student" ToRole="Klas" />
+          <NavigationProperty Name="Ouder" Relationship="DbsC.FK_Student_Ouder" FromRole="Student" ToRole="Ouder" />
+        </EntityType>
+        <Association Name="FK_Student_Klas">
+          <End Type="DbsC.Klas" Role="Klas" Multiplicity="0..1" />
+          <End Type="DbsC.Student" Role="Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="KlasId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_Ouder">
+          <End Type="DbsC.Ouder" Role="Ouder" Multiplicity="1" />
+          <End Type="DbsC.Student" Role="Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ouder">
+              <PropertyRef Name="OuderID" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="OuderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DbsCStoreContainer" CdmEntityContainer="DbsContext">
+          <EntitySetMapping Name="Beheerder">
+            <EntityTypeMapping TypeName="DbsC.Beheerder">
+              <MappingFragment StoreEntitySet="Beheerder">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Voornaam" ColumnName="Voornaam" />
+                <ScalarProperty Name="Tussenvoegsels" ColumnName="Tussenvoegsels" />
+                <ScalarProperty Name="Achternaam" ColumnName="Achternaam" />
+                <ScalarProperty Name="Wachtwoord" ColumnName="Wachtwoord" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Docent">
+            <EntityTypeMapping TypeName="DbsC.Docent">
+              <MappingFragment StoreEntitySet="Docent">
+                <ScalarProperty Name="Afkorting" ColumnName="Afkorting" />
+                <ScalarProperty Name="Voornaam" ColumnName="Voornaam" />
+                <ScalarProperty Name="Tussenvoegsels" ColumnName="Tussenvoegsels" />
+                <ScalarProperty Name="Achternaam" ColumnName="Achternaam" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Telefoon1" ColumnName="Telefoon1" />
+                <ScalarProperty Name="Telefoon2" ColumnName="Telefoon2" />
+                <ScalarProperty Name="Klas" ColumnName="Klas" />
+                <ScalarProperty Name="Wachtwoord" ColumnName="Wachtwoord" />
+                <ScalarProperty Name="Isactief" ColumnName="Isactief" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gesprek">
+            <EntityTypeMapping TypeName="DbsC.Gesprek">
+              <MappingFragment StoreEntitySet="Gesprek">
+                <ScalarProperty Name="GesprekID" ColumnName="GesprekID" />
+                <ScalarProperty Name="OuderID" ColumnName="OuderID" />
+                <ScalarProperty Name="SubMomentID" ColumnName="SubMomentID" />
+                <ScalarProperty Name="ThuisSituatie" ColumnName="ThuisSituatie" />
+                <ScalarProperty Name="StudieKeuze" ColumnName="StudieKeuze" />
+                <ScalarProperty Name="Voortgang" ColumnName="Voortgang" />
+                <ScalarProperty Name="Presentatie" ColumnName="Presentatie" />
+                <ScalarProperty Name="Motivatie" ColumnName="Motivatie" />
+                <ScalarProperty Name="AlgemeenWelbevinden" ColumnName="AlgemeenWelbevinden" />
+                <ScalarProperty Name="VerwachtingsPatroon" ColumnName="VerwachtingsPatroon" />
+                <ScalarProperty Name="DocentOpmerking" ColumnName="DocentOpmerking" />
+                <ScalarProperty Name="StudentOpermerking" ColumnName="StudentOpermerking" />
+                <ScalarProperty Name="AfsprakenDoorverijzing" ColumnName="AfsprakenDoorverijzing" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Moment">
+            <EntityTypeMapping TypeName="DbsC.Moment">
+              <MappingFragment StoreEntitySet="Moment">
+                <ScalarProperty Name="MomentID" ColumnName="MomentID" />
+                <ScalarProperty Name="DocentAfkorting" ColumnName="DocentAfkorting" />
+                <ScalarProperty Name="Datum" ColumnName="Datum" />
+                <ScalarProperty Name="BeginTijd" ColumnName="BeginTijd" />
+                <ScalarProperty Name="EindTijd" ColumnName="EindTijd" />
+                <ScalarProperty Name="Gespreksduur" ColumnName="Gespreksduur" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Periode">
+            <EntityTypeMapping TypeName="DbsC.Periode">
+              <MappingFragment StoreEntitySet="Periode">
+                <ScalarProperty Name="PeriodId" ColumnName="PeriodId" />
+                <ScalarProperty Name="StartDatum" ColumnName="StartDatum" />
+                <ScalarProperty Name="EindDatum" ColumnName="EindDatum" />
+                <ScalarProperty Name="IsActief" ColumnName="IsActief" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubMoment">
+            <EntityTypeMapping TypeName="DbsC.SubMoment">
+              <MappingFragment StoreEntitySet="SubMoment">
+                <ScalarProperty Name="SubMomentID" ColumnName="SubMomentID" />
+                <ScalarProperty Name="MomentID" ColumnName="MomentID" />
+                <ScalarProperty Name="OuderID" ColumnName="OuderID" />
+                <ScalarProperty Name="BeginTijd" ColumnName="BeginTijd" />
+                <ScalarProperty Name="EindTijd" ColumnName="EindTijd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DbsC.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Klas">
+            <EntityTypeMapping TypeName="DbsC.Klas">
+              <MappingFragment StoreEntitySet="Klas">
+                <ScalarProperty Name="AangemaaktOp" ColumnName="AangemaaktOp" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DocentAfkorting" ColumnName="DocentAfkorting" />
+                <ScalarProperty Name="KlasNaam" ColumnName="KlasNaam" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="DbsC.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="DbsC.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="DbsC.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="DbsC.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DbsC.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="DbsC.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DbsC.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="DbsC.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="DbsC.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="spLastKlas" FunctionName="DbsC.Store.spLastKlas" />
+          <EntitySetMapping Name="Ouder">
+            <EntityTypeMapping TypeName="DbsC.Ouder">
+              <MappingFragment StoreEntitySet="Ouder">
+                <ScalarProperty Name="Wachtwoord" ColumnName="Wachtwoord" />
+                <ScalarProperty Name="Woonplaats" ColumnName="Woonplaats" />
+                <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="Telefoon2" ColumnName="Telefoon2" />
+                <ScalarProperty Name="Telefoon1" ColumnName="Telefoon1" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Achternaam" ColumnName="Achternaam" />
+                <ScalarProperty Name="Tussenvoegsels" ColumnName="Tussenvoegsels" />
+                <ScalarProperty Name="Voornaam" ColumnName="Voornaam" />
+                <ScalarProperty Name="OuderID" ColumnName="OuderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Student">
+            <EntityTypeMapping TypeName="DbsC.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="Actief" ColumnName="Actief" />
+                <ScalarProperty Name="OuderID" ColumnName="OuderID" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Opleiding" ColumnName="Opleiding" />
+                <ScalarProperty Name="Telefoon2" ColumnName="Telefoon2" />
+                <ScalarProperty Name="Telefoon1" ColumnName="Telefoon1" />
+                <ScalarProperty Name="Geslacht" ColumnName="Geslacht" />
+                <ScalarProperty Name="GeboorteDatum" ColumnName="GeboorteDatum" />
+                <ScalarProperty Name="Woonplaats" ColumnName="Woonplaats" />
+                <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="Achternaam" ColumnName="Achternaam" />
+                <ScalarProperty Name="Tussenvoegsels" ColumnName="Tussenvoegsels" />
+                <ScalarProperty Name="Roepnaam" ColumnName="Roepnaam" />
+                <ScalarProperty Name="KlasId" ColumnName="KlasId" />
+                <ScalarProperty Name="Studentnummer" ColumnName="Studentnummer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d75e1bc119164c0d850a29c7382423dd" Name="Diagram1">
+        <EntityTypeShape EntityType="DbsC.Beheerder" Width="1.5" PointX="7.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbsC.Docent" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbsC.Gesprek" Width="1.5" PointX="7.5" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbsC.Moment" Width="1.5" PointX="3" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbsC.Periode" Width="1.5" PointX="9.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbsC.SubMoment" Width="1.5" PointX="5.25" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbsC.sysdiagrams" Width="1.5" PointX="9.75" PointY="4.25" IsExpanded="true" />
+        <AssociationConnector Association="DbsC.FK_Moment_Docent" ManuallyRouted="false" />
+        <AssociationConnector Association="DbsC.FK_Gesprek_SubMoment" ManuallyRouted="false" />
+        <AssociationConnector Association="DbsC.FK_SubMoment_Moment" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DbsC.Klas" Width="1.5" PointX="3" PointY="3.125" />
+        <AssociationConnector Association="DbsC.FK_Klas_Docent" />
+        <EntityTypeShape EntityType="DbsC.Ouder" Width="1.5" PointX="3" PointY="9" />
+        <EntityTypeShape EntityType="DbsC.Student" Width="1.5" PointX="5.25" PointY="9.5" />
+        <AssociationConnector Association="DbsC.FK_Student_Klas" />
+        <AssociationConnector Association="DbsC.FK_Student_Ouder" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

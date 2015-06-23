@@ -1,0 +1,290 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="ConnectionString1" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(DataModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(DataModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <EntitySet Name="Beheerder" EntityType="DataModel.Beheerder" />
+    <EntitySet Name="Gesprek" EntityType="DataModel.Gesprek" />
+    <EntitySet Name="Klas" EntityType="DataModel.Klas" />
+    <EntitySet Name="Moment" EntityType="DataModel.Moment" />
+    <EntitySet Name="Ouder" EntityType="DataModel.Ouder" />
+    <EntitySet Name="Periode" EntityType="DataModel.Periode" />
+    <EntitySet Name="Student" EntityType="DataModel.Student" />
+    <EntitySet Name="SubMoment" EntityType="DataModel.SubMoment" />
+    <EntitySet Name="sysdiagrams" EntityType="DataModel.sysdiagrams" />
+    <AssociationSet Name="FK_Gesprek_SubMoment" Association="DataModel.FK_Gesprek_SubMoment">
+      <End Role="SubMoment" EntitySet="SubMoment" />
+      <End Role="Gesprek" EntitySet="Gesprek" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Klas" Association="DataModel.FK_Student_Klas">
+      <End Role="Klas" EntitySet="Klas" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubMoment_Moment" Association="DataModel.FK_SubMoment_Moment">
+      <End Role="Moment" EntitySet="Moment" />
+      <End Role="SubMoment" EntitySet="SubMoment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Ouder" Association="DataModel.FK_Student_Ouder">
+      <End Role="Ouder" EntitySet="Ouder" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+    <EntitySet Name="Docent" EntityType="DataModel.Docent" />
+    <AssociationSet Name="FK_Docent_Klas" Association="DataModel.FK_Docent_Klas">
+      <End Role="Klas" EntitySet="Klas" />
+      <End Role="Docent" EntitySet="Docent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Moment_Docent" Association="DataModel.FK_Moment_Docent">
+      <End Role="Docent" EntitySet="Docent" />
+      <End Role="Moment" EntitySet="Moment" />
+    </AssociationSet>
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="Beheerder">
+    <Key>
+      <PropertyRef Name="Email" />
+    </Key>
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Voornaam" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="Tussenvoegsels" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="Achternaam" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="Wachtwoord" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Gesprek">
+    <Key>
+      <PropertyRef Name="GesprekID" />
+    </Key>
+    <Property Name="GesprekID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OuderID" Type="Int32" Nullable="false" />
+    <Property Name="SubMomentID" Type="Int32" Nullable="false" />
+    <Property Name="ThuisSituatie" Type="Boolean" />
+    <Property Name="StudieKeuze" Type="Boolean" />
+    <Property Name="Voortgang" Type="Boolean" />
+    <Property Name="Presentatie" Type="Boolean" />
+    <Property Name="Motivatie" Type="Boolean" />
+    <Property Name="AlgemeenWelbevinden" Type="Boolean" />
+    <Property Name="VerwachtingsPatroon" Type="Boolean" />
+    <Property Name="DocentOpmerking" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="StudentOpermerking" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="AfsprakenDoorverijzing" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="SubMoment" Relationship="DataModel.FK_Gesprek_SubMoment" FromRole="Gesprek" ToRole="SubMoment" />
+  </EntityType>
+  <EntityType Name="Klas">
+    <Key>
+      <PropertyRef Name="KlasNaam" />
+    </Key>
+    <Property Name="KlasNaam" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Student" Relationship="DataModel.FK_Student_Klas" FromRole="Klas" ToRole="Student" />
+    <NavigationProperty Name="Docent" Relationship="DataModel.FK_Docent_Klas" FromRole="Klas" ToRole="Docent" />
+  </EntityType>
+  <EntityType Name="Moment">
+    <Key>
+      <PropertyRef Name="MomentID" />
+    </Key>
+    <Property Name="MomentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DocentAfkorting" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Datum" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="BeginTijd" Type="Time" Nullable="false" Precision="0" />
+    <Property Name="EindTijd" Type="Time" Nullable="false" Precision="0" />
+    <Property Name="Gespreksduur" Type="Time" Nullable="false" Precision="7" />
+    <NavigationProperty Name="SubMoment" Relationship="DataModel.FK_SubMoment_Moment" FromRole="Moment" ToRole="SubMoment" />
+    <NavigationProperty Name="Docent" Relationship="DataModel.FK_Moment_Docent" FromRole="Moment" ToRole="Docent" />
+  </EntityType>
+  <EntityType Name="Ouder">
+    <Key>
+      <PropertyRef Name="OuderID" />
+    </Key>
+    <Property Name="OuderID" Type="Int32" Nullable="false" />
+    <Property Name="Voornaam" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="Tussenvoegsels" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="Achternaam" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="Telefoon1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Telefoon2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Adres" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="Postcode" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="Woonplaats" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="Wachtwoord" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Student" Relationship="DataModel.FK_Student_Ouder" FromRole="Ouder" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Periode">
+    <Key>
+      <PropertyRef Name="PeriodId" />
+    </Key>
+    <Property Name="PeriodId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StartDatum" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="EindDatum" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="IsActief" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="Studentnummer" />
+    </Key>
+    <Property Name="Studentnummer" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Klas" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Roepnaam" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Name="Tussenvoegsels" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="Achternaam" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="Adres" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="Postcode" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="Woonplaats" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="GeboorteDatum" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Geslacht" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="Telefoon1" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Telefoon2" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Opleiding" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="255" FixedLength="true" Unicode="true" />
+    <Property Name="OuderID" Type="Int32" />
+    <Property Name="Actief" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Klas1" Relationship="DataModel.FK_Student_Klas" FromRole="Student" ToRole="Klas" />
+    <NavigationProperty Name="Ouder" Relationship="DataModel.FK_Student_Ouder" FromRole="Student" ToRole="Ouder" />
+  </EntityType>
+  <EntityType Name="SubMoment">
+    <Key>
+      <PropertyRef Name="SubMomentID" />
+    </Key>
+    <Property Name="SubMomentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MomentID" Type="Int32" Nullable="false" />
+    <Property Name="OuderID" Type="Int32" Nullable="false" />
+    <Property Name="BeginTijd" Type="Time" Nullable="false" Precision="0" />
+    <Property Name="EindTijd" Type="Time" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Gesprek" Relationship="DataModel.FK_Gesprek_SubMoment" FromRole="SubMoment" ToRole="Gesprek" />
+    <NavigationProperty Name="Moment" Relationship="DataModel.FK_SubMoment_Moment" FromRole="SubMoment" ToRole="Moment" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Gesprek_SubMoment">
+    <End Type="DataModel.SubMoment" Role="SubMoment" Multiplicity="1" />
+    <End Type="DataModel.Gesprek" Role="Gesprek" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubMoment">
+        <PropertyRef Name="SubMomentID" />
+      </Principal>
+      <Dependent Role="Gesprek">
+        <PropertyRef Name="SubMomentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Klas">
+    <End Type="DataModel.Klas" Role="Klas" Multiplicity="1" />
+    <End Type="DataModel.Student" Role="Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Klas">
+        <PropertyRef Name="KlasNaam" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="Klas" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubMoment_Moment">
+    <End Type="DataModel.Moment" Role="Moment" Multiplicity="1" />
+    <End Type="DataModel.SubMoment" Role="SubMoment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Moment">
+        <PropertyRef Name="MomentID" />
+      </Principal>
+      <Dependent Role="SubMoment">
+        <PropertyRef Name="MomentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Ouder">
+    <End Type="DataModel.Ouder" Role="Ouder" Multiplicity="0..1" />
+    <End Type="DataModel.Student" Role="Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ouder">
+        <PropertyRef Name="OuderID" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="OuderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Docent">
+    <Key>
+      <PropertyRef Name="Afkorting" />
+    </Key>
+    <Property Name="Afkorting" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Voornaam" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="Tussenvoegsels" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="Achternaam" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Telefoon1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Telefoon2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Klas" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Wachtwoord" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Isactief" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Klas1" Relationship="DataModel.FK_Docent_Klas" FromRole="Docent" ToRole="Klas" />
+    <NavigationProperty Name="Moment" Relationship="DataModel.FK_Moment_Docent" FromRole="Docent" ToRole="Moment" />
+  </EntityType>
+  <Association Name="FK_Docent_Klas">
+    <End Type="DataModel.Klas" Role="Klas" Multiplicity="0..1" />
+    <End Type="DataModel.Docent" Role="Docent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Klas">
+        <PropertyRef Name="KlasNaam" />
+      </Principal>
+      <Dependent Role="Docent">
+        <PropertyRef Name="Klas" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Moment_Docent">
+    <End Type="DataModel.Docent" Role="Docent" Multiplicity="1" />
+    <End Type="DataModel.Moment" Role="Moment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Docent">
+        <PropertyRef Name="Afkorting" />
+      </Principal>
+      <Dependent Role="Moment">
+        <PropertyRef Name="DocentAfkorting" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

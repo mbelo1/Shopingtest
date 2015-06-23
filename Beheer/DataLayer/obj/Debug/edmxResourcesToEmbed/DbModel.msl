@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DataModelStoreContainer" CdmEntityContainer="ConnectionString1">
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="DataModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="DataModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="DataModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="DataModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DataModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="DataModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DataModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="DataModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="DataModel.Store.sp_upgraddiagrams" />
+    <EntitySetMapping Name="Beheerder">
+      <EntityTypeMapping TypeName="DataModel.Beheerder">
+        <MappingFragment StoreEntitySet="Beheerder">
+          <ScalarProperty Name="Wachtwoord" ColumnName="Wachtwoord" />
+          <ScalarProperty Name="Achternaam" ColumnName="Achternaam" />
+          <ScalarProperty Name="Tussenvoegsels" ColumnName="Tussenvoegsels" />
+          <ScalarProperty Name="Voornaam" ColumnName="Voornaam" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Gesprek">
+      <EntityTypeMapping TypeName="DataModel.Gesprek">
+        <MappingFragment StoreEntitySet="Gesprek">
+          <ScalarProperty Name="AfsprakenDoorverijzing" ColumnName="AfsprakenDoorverijzing" />
+          <ScalarProperty Name="StudentOpermerking" ColumnName="StudentOpermerking" />
+          <ScalarProperty Name="DocentOpmerking" ColumnName="DocentOpmerking" />
+          <ScalarProperty Name="VerwachtingsPatroon" ColumnName="VerwachtingsPatroon" />
+          <ScalarProperty Name="AlgemeenWelbevinden" ColumnName="AlgemeenWelbevinden" />
+          <ScalarProperty Name="Motivatie" ColumnName="Motivatie" />
+          <ScalarProperty Name="Presentatie" ColumnName="Presentatie" />
+          <ScalarProperty Name="Voortgang" ColumnName="Voortgang" />
+          <ScalarProperty Name="StudieKeuze" ColumnName="StudieKeuze" />
+          <ScalarProperty Name="ThuisSituatie" ColumnName="ThuisSituatie" />
+          <ScalarProperty Name="SubMomentID" ColumnName="SubMomentID" />
+          <ScalarProperty Name="OuderID" ColumnName="OuderID" />
+          <ScalarProperty Name="GesprekID" ColumnName="GesprekID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Klas">
+      <EntityTypeMapping TypeName="DataModel.Klas">
+        <MappingFragment StoreEntitySet="Klas">
+          <ScalarProperty Name="KlasNaam" ColumnName="KlasNaam" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Moment">
+      <EntityTypeMapping TypeName="DataModel.Moment">
+        <MappingFragment StoreEntitySet="Moment">
+          <ScalarProperty Name="Gespreksduur" ColumnName="Gespreksduur" />
+          <ScalarProperty Name="EindTijd" ColumnName="EindTijd" />
+          <ScalarProperty Name="BeginTijd" ColumnName="BeginTijd" />
+          <ScalarProperty Name="Datum" ColumnName="Datum" />
+          <ScalarProperty Name="DocentAfkorting" ColumnName="DocentAfkorting" />
+          <ScalarProperty Name="MomentID" ColumnName="MomentID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ouder">
+      <EntityTypeMapping TypeName="DataModel.Ouder">
+        <MappingFragment StoreEntitySet="Ouder">
+          <ScalarProperty Name="Wachtwoord" ColumnName="Wachtwoord" />
+          <ScalarProperty Name="Woonplaats" ColumnName="Woonplaats" />
+          <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+          <ScalarProperty Name="Adres" ColumnName="Adres" />
+          <ScalarProperty Name="Telefoon2" ColumnName="Telefoon2" />
+          <ScalarProperty Name="Telefoon1" ColumnName="Telefoon1" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Achternaam" ColumnName="Achternaam" />
+          <ScalarProperty Name="Tussenvoegsels" ColumnName="Tussenvoegsels" />
+          <ScalarProperty Name="Voornaam" ColumnName="Voornaam" />
+          <ScalarProperty Name="OuderID" ColumnName="OuderID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Periode">
+      <EntityTypeMapping TypeName="DataModel.Periode">
+        <MappingFragment StoreEntitySet="Periode">
+          <ScalarProperty Name="IsActief" ColumnName="IsActief" />
+          <ScalarProperty Name="EindDatum" ColumnName="EindDatum" />
+          <ScalarProperty Name="StartDatum" ColumnName="StartDatum" />
+          <ScalarProperty Name="PeriodId" ColumnName="PeriodId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Student">
+      <EntityTypeMapping TypeName="DataModel.Student">
+        <MappingFragment StoreEntitySet="Student">
+          <ScalarProperty Name="Actief" ColumnName="Actief" />
+          <ScalarProperty Name="OuderID" ColumnName="OuderID" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Opleiding" ColumnName="Opleiding" />
+          <ScalarProperty Name="Telefoon2" ColumnName="Telefoon2" />
+          <ScalarProperty Name="Telefoon1" ColumnName="Telefoon1" />
+          <ScalarProperty Name="Geslacht" ColumnName="Geslacht" />
+          <ScalarProperty Name="GeboorteDatum" ColumnName="GeboorteDatum" />
+          <ScalarProperty Name="Woonplaats" ColumnName="Woonplaats" />
+          <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+          <ScalarProperty Name="Adres" ColumnName="Adres" />
+          <ScalarProperty Name="Achternaam" ColumnName="Achternaam" />
+          <ScalarProperty Name="Tussenvoegsels" ColumnName="Tussenvoegsels" />
+          <ScalarProperty Name="Roepnaam" ColumnName="Roepnaam" />
+          <ScalarProperty Name="Klas" ColumnName="Klas" />
+          <ScalarProperty Name="Studentnummer" ColumnName="Studentnummer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubMoment">
+      <EntityTypeMapping TypeName="DataModel.SubMoment">
+        <MappingFragment StoreEntitySet="SubMoment">
+          <ScalarProperty Name="EindTijd" ColumnName="EindTijd" />
+          <ScalarProperty Name="BeginTijd" ColumnName="BeginTijd" />
+          <ScalarProperty Name="OuderID" ColumnName="OuderID" />
+          <ScalarProperty Name="MomentID" ColumnName="MomentID" />
+          <ScalarProperty Name="SubMomentID" ColumnName="SubMomentID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="DataModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Docent">
+      <EntityTypeMapping TypeName="DataModel.Docent">
+        <MappingFragment StoreEntitySet="Docent">
+          <ScalarProperty Name="Isactief" ColumnName="Isactief" />
+          <ScalarProperty Name="Wachtwoord" ColumnName="Wachtwoord" />
+          <ScalarProperty Name="Klas" ColumnName="Klas" />
+          <ScalarProperty Name="Telefoon2" ColumnName="Telefoon2" />
+          <ScalarProperty Name="Telefoon1" ColumnName="Telefoon1" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Achternaam" ColumnName="Achternaam" />
+          <ScalarProperty Name="Tussenvoegsels" ColumnName="Tussenvoegsels" />
+          <ScalarProperty Name="Voornaam" ColumnName="Voornaam" />
+          <ScalarProperty Name="Afkorting" ColumnName="Afkorting" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

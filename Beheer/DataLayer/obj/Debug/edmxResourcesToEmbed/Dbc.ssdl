@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DbsC.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Beheerder">
+    <Key>
+      <PropertyRef Name="Email" />
+    </Key>
+    <Property Name="Email" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Voornaam" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="Tussenvoegsels" Type="varchar" MaxLength="60" />
+    <Property Name="Achternaam" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="Wachtwoord" Type="varchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Docent">
+    <Key>
+      <PropertyRef Name="Afkorting" />
+    </Key>
+    <Property Name="Afkorting" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Voornaam" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="Tussenvoegsels" Type="varchar" MaxLength="60" />
+    <Property Name="Achternaam" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Telefoon1" Type="varchar" MaxLength="20" />
+    <Property Name="Telefoon2" Type="varchar" MaxLength="20" />
+    <Property Name="Klas" Type="varchar" MaxLength="10" />
+    <Property Name="Wachtwoord" Type="varchar(max)" />
+    <Property Name="Isactief" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Gesprek">
+    <Key>
+      <PropertyRef Name="GesprekID" />
+    </Key>
+    <Property Name="GesprekID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OuderID" Type="int" Nullable="false" />
+    <Property Name="SubMomentID" Type="int" Nullable="false" />
+    <Property Name="ThuisSituatie" Type="bit" />
+    <Property Name="StudieKeuze" Type="bit" />
+    <Property Name="Voortgang" Type="bit" />
+    <Property Name="Presentatie" Type="bit" />
+    <Property Name="Motivatie" Type="bit" />
+    <Property Name="AlgemeenWelbevinden" Type="bit" />
+    <Property Name="VerwachtingsPatroon" Type="bit" />
+    <Property Name="DocentOpmerking" Type="varchar(max)" />
+    <Property Name="StudentOpermerking" Type="varchar(max)" />
+    <Property Name="AfsprakenDoorverijzing" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Klas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="KlasNaam" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="DocentAfkorting" Type="varchar" MaxLength="10" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AangemaaktOp" Type="date" />
+  </EntityType>
+  <EntityType Name="Moment">
+    <Key>
+      <PropertyRef Name="MomentID" />
+    </Key>
+    <Property Name="MomentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DocentAfkorting" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Datum" Type="date" Nullable="false" />
+    <Property Name="BeginTijd" Type="time" Precision="0" Nullable="false" />
+    <Property Name="EindTijd" Type="time" Precision="0" Nullable="false" />
+    <Property Name="Gespreksduur" Type="time" Precision="7" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ouder">
+    <Key>
+      <PropertyRef Name="OuderID" />
+    </Key>
+    <Property Name="OuderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Voornaam" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="Tussenvoegsels" Type="varchar" MaxLength="60" />
+    <Property Name="Achternaam" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="Telefoon1" Type="varchar" MaxLength="20" />
+    <Property Name="Telefoon2" Type="varchar" MaxLength="20" />
+    <Property Name="Adres" Type="varchar" MaxLength="60" />
+    <Property Name="Postcode" Type="varchar" MaxLength="6" />
+    <Property Name="Woonplaats" Type="varchar" MaxLength="60" />
+    <Property Name="Wachtwoord" Type="varchar" MaxLength="60" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Periode">
+    <Key>
+      <PropertyRef Name="PeriodId" />
+    </Key>
+    <Property Name="PeriodId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StartDatum" Type="date" Nullable="false" />
+    <Property Name="EindDatum" Type="date" Nullable="false" />
+    <Property Name="IsActief" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="Studentnummer" />
+    </Key>
+    <Property Name="Studentnummer" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="KlasId" Type="int" />
+    <Property Name="Roepnaam" Type="nvarchar" MaxLength="60" Nullable="false" />
+    <Property Name="Tussenvoegsels" Type="varchar" MaxLength="60" />
+    <Property Name="Achternaam" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="Adres" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="Postcode" Type="varchar" MaxLength="7" Nullable="false" />
+    <Property Name="Woonplaats" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="GeboorteDatum" Type="date" Nullable="false" />
+    <Property Name="Geslacht" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="Telefoon1" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="Telefoon2" Type="nchar" MaxLength="20" />
+    <Property Name="Opleiding" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Email" Type="nchar" MaxLength="255" Nullable="false" />
+    <Property Name="OuderID" Type="int" Nullable="false" />
+    <Property Name="Actief" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SubMoment">
+    <Key>
+      <PropertyRef Name="SubMomentID" />
+    </Key>
+    <Property Name="SubMomentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MomentID" Type="int" Nullable="false" />
+    <Property Name="OuderID" Type="int" />
+    <Property Name="BeginTijd" Type="time" Precision="0" Nullable="false" />
+    <Property Name="EindTijd" Type="time" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_Gesprek_SubMoment">
+    <End Role="SubMoment" Type="Self.SubMoment" Multiplicity="1" />
+    <End Role="Gesprek" Type="Self.Gesprek" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubMoment">
+        <PropertyRef Name="SubMomentID" />
+      </Principal>
+      <Dependent Role="Gesprek">
+        <PropertyRef Name="SubMomentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Klas_Docent">
+    <End Role="Docent" Type="Self.Docent" Multiplicity="0..1" />
+    <End Role="Klas" Type="Self.Klas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Docent">
+        <PropertyRef Name="Afkorting" />
+      </Principal>
+      <Dependent Role="Klas">
+        <PropertyRef Name="DocentAfkorting" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Moment_Docent">
+    <End Role="Docent" Type="Self.Docent" Multiplicity="1" />
+    <End Role="Moment" Type="Self.Moment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Docent">
+        <PropertyRef Name="Afkorting" />
+      </Principal>
+      <Dependent Role="Moment">
+        <PropertyRef Name="DocentAfkorting" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Klas">
+    <End Role="Klas" Type="Self.Klas" Multiplicity="0..1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Klas">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="KlasId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Ouder">
+    <End Role="Ouder" Type="Self.Ouder" Multiplicity="1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ouder">
+        <PropertyRef Name="OuderID" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="OuderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubMoment_Moment">
+    <End Role="Moment" Type="Self.Moment" Multiplicity="1" />
+    <End Role="SubMoment" Type="Self.SubMoment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Moment">
+        <PropertyRef Name="MomentID" />
+      </Principal>
+      <Dependent Role="SubMoment">
+        <PropertyRef Name="MomentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spLastKlas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="DbsCStoreContainer">
+    <EntitySet Name="Beheerder" EntityType="Self.Beheerder" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Docent" EntityType="Self.Docent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Gesprek" EntityType="Self.Gesprek" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Klas" EntityType="Self.Klas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Moment" EntityType="Self.Moment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ouder" EntityType="Self.Ouder" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Periode" EntityType="Self.Periode" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SubMoment" EntityType="Self.SubMoment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Gesprek_SubMoment" Association="Self.FK_Gesprek_SubMoment">
+      <End Role="SubMoment" EntitySet="SubMoment" />
+      <End Role="Gesprek" EntitySet="Gesprek" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Klas_Docent" Association="Self.FK_Klas_Docent">
+      <End Role="Docent" EntitySet="Docent" />
+      <End Role="Klas" EntitySet="Klas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Moment_Docent" Association="Self.FK_Moment_Docent">
+      <End Role="Docent" EntitySet="Docent" />
+      <End Role="Moment" EntitySet="Moment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Klas" Association="Self.FK_Student_Klas">
+      <End Role="Klas" EntitySet="Klas" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Ouder" Association="Self.FK_Student_Ouder">
+      <End Role="Ouder" EntitySet="Ouder" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubMoment_Moment" Association="Self.FK_SubMoment_Moment">
+      <End Role="Moment" EntitySet="Moment" />
+      <End Role="SubMoment" EntitySet="SubMoment" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
